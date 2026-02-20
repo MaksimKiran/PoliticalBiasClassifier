@@ -6,13 +6,12 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 def train_model(X_train, y_train, model_type="logreg"):
     """
     Trains a model based on the model_type argument and returns it as a Pipeline object.
-    
+
     :param X_train: features in train set
     :param y_train: labels in train set
     :param model_type: model used
     :return: pipeline object trained on the data provided through classifier specified by model_type
     """
-
 
     if model_type == "logreg":
         classifier = LogisticRegression(

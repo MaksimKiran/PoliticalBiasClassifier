@@ -1,14 +1,17 @@
-from sklearn.pipeline import Pipeline
-
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import FunctionTransformer
 import numpy as np
 import pandas as pd
 
-if __name__ == '__main__':
+from preprocess import load_and_split_data
+from train import train_model
+from evaluate import evaluate_model
 
-    df = pd.read_csv("data/allsides_balanced_news_headlines-texts.csv")
-    # Only text and bias rating matter
-    df_dropped = df.iloc[:,-2:]
-    df_dropped = df_dropped.dropna()
-    df_dropped.to_csv("data/cleaned_data.csv", index=False)
+if __name__ == '__main__':
+    X_train, X_test, y_train, y_test = load_and_split_data()
+    pipeline = train_model(X_train, y_train)
+    evaluate_model(pipeline, X_test, y_test)
+
+
 
 
