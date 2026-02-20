@@ -13,5 +13,5 @@ This project uses the allsides_balanced_news_headlines-texts.csv file to predict
 Raw data can be found at this public GitHub repository [here.](https://github.com/irgroup/Qbias)
 For now the model uses only the text entry itself for training (this is by design, other features are to be considered as well).
 The preprocess script reads the csv file and extract the necessary attributes, then perfroms the split. The train script returns a Pipeline object
-which uses one of three models: GaussianNB, Logistic Regression and SVC. Then the evaluate script performs the model evaluation. Metrics include confusion matrix,
+which uses one of three models: NaiveBayes, Logistic Regression and SVC. Then the evaluate script performs the model evaluation; metrics include confusion matrix,
 Macro F1, as well as basic accuracy and precision metrics.

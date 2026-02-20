@@ -1,6 +1,7 @@
+from sklearn.naive_bayes import  ComplementNB
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC, LinearSVC
+from sklearn.svm import LinearSVC
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 def train_model(X_train, y_train, model_type="logreg"):
@@ -20,6 +21,8 @@ def train_model(X_train, y_train, model_type="logreg"):
         )
     elif model_type == "svm":
         classifier = LinearSVC()
+    elif model_type == "nb":
+        classifier = ComplementNB()
     else:
         raise ValueError("model_type must be 'logreg' or 'svm'")
 
