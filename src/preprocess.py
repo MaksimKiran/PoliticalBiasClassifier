@@ -14,18 +14,20 @@ def load_and_split_data(path="../data/allsides_balanced_news_headlines-texts.csv
 
     df = pd.read_csv(path)
     # Only text and bias rating matter
-    df = df[["text", "bias_rating"]]
+    df = df[["text", "source", "bias_rating"]]
     df = df.dropna()
     # Readability, optional
     # df.to_csv("../data/cleaned_data.csv", index=False)
 
-    X = df["text"]
+    X = df[["text", "source"]]
     y = df["bias_rating"]
 
     X_train, X_test, y_train, y_test = train_test_split(X, y,
                                                         random_state=frandom_state,
                                                         test_size=ftest_size,
                                                         stratify=y)
+
+    # print(df.head())
 
     return X_train, X_test, y_train, y_test
 

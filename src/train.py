@@ -1,6 +1,8 @@
+from sklearn.compose import ColumnTransformer
 from sklearn.naive_bayes import  ComplementNB
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.svm import LinearSVC
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -13,6 +15,16 @@ def train_model(X_train, y_train, model_type="logreg"):
     :param model_type: model used
     :return: pipeline object trained on the data provided through classifier specified by model_type
     """
+
+    preprocessor = ColumnTransformer([
+        ("tfidf", TfidfVectorizer(
+            lowercase=True,
+            max_features=20000,
+            ngram_range=(1, 3),
+            min_df=5
+        ), "text"),
+        ("source_enc", OneHotEncoder(handle_unknown="ignore"), ["source"])
+    ])
 
     if model_type == "logreg":
         classifier = LogisticRegression(
@@ -27,13 +39,7 @@ def train_model(X_train, y_train, model_type="logreg"):
         raise ValueError("model_type must be 'logreg' or 'svm'")
 
     pipeline = Pipeline([
-        ("tfidf", TfidfVectorizer(
-            lowercase=True,
-            stop_words="english",
-            max_features=20000,
-            ngram_range=(1, 2),
-            min_df=5
-        )),
+        ("features", preprocessor),
         ("clf", classifier)
     ])
 

@@ -9,7 +9,7 @@ from evaluate import evaluate_model
 
 if __name__ == '__main__':
     X_train, X_test, y_train, y_test = load_and_split_data()
-    pipeline = train_model(X_train, y_train, model_type="nb")
+    pipeline = train_model(X_train, y_train, model_type="svm")
     evaluate_model(pipeline, X_test, y_test)
 
 
