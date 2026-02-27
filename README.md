@@ -15,11 +15,11 @@ political bias ratings (left, center, right). Raw data can be found at this publ
 GitHub repository [here.](https://github.com/irgroup/Qbias)
 
 The pipeline consists of three modules:
-`preprocess.py`: loads the CSV, extracts relevant features, performs stratified train/test split
-`train.py`: trains a pipeline using a `ColumnTransformer` to handle text (TF-IDF) and 
+preprocess.py` loads the CSV, extracts relevant features, performs stratified train/test split.
+`train.py` trains a pipeline using a `ColumnTransformer` to handle text (TF-IDF) and 
 categorical features (OneHotEncoding) separately, with support for Naive Bayes, 
-Logistic Regression, and LinearSVC
-`evaluate.py`: reports accuracy, Macro F1, per-class metrics, and confusion matrix
+Logistic Regression, and LinearSVC.
+`evaluate.py` reports accuracy, Macro F1, per-class metrics, and confusion matrix.
 
 ### Results
 | Experiment | Features | Accuracy | Macro F1 |
