@@ -21,7 +21,7 @@ categorical features (OneHotEncoding) separately, with support for Naive Bayes,
 Logistic Regression, and LinearSVC.
 `evaluate.py` reports accuracy, Macro F1, per-class metrics, and confusion matrix.
 
-### Results
+### Results (SVM):
 | Experiment | Features | Accuracy | Macro F1 |
 |---|---|---|---|
 | Text only | article body | 0.50 | 0.45 |
