@@ -1,4 +1,4 @@
-# Political Bias Classifier using Logistic Regression 
+# Political Bias Classifier with TdIdf Vectorization
 
 
 ### Abstract 
