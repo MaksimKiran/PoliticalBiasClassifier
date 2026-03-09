@@ -42,3 +42,14 @@ def get_cached_embeddings(X, cache_path, model):
         np.save(cache_path, embeddings)
         return embeddings
 
+# For proof of overfitting
+def get_tiny_subset(X_train, y_train, n_per_class=10):
+    classes = y_train.unique()
+    X_samples, y_samples = [], []
+    for cls in classes:
+        mask = y_train == cls
+        X_cls = X_train[mask].head(n_per_class)
+        y_cls = y_train[mask].head(n_per_class)
+        X_samples.append(X_cls)
+        y_samples.append(y_cls)
+    return pd.concat(X_samples), pd.concat(y_samples)

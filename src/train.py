@@ -18,7 +18,7 @@ class SBERTTransformer(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X):
-        cache_path = f"../data/embeddings_{len(X)}.npy"
+        cache_path = f"../data/embeddings_{len(X)}_{self.model_name}.npy"
         return get_cached_embeddings(X, cache_path, self.model)
 
 def train_model(X_train, y_train, model_type="logreg", SBERT = False, bert_name = "bert-base-nli-mean-tokens"):
@@ -28,7 +28,7 @@ def train_model(X_train, y_train, model_type="logreg", SBERT = False, bert_name 
     :param X_train: features in train set
     :param y_train: labels in train set
     :param model_type: model used
-    :param SBERT: boolean to indicate whether to use sentence embeddings through SBERT
+    :param SBERT: boolean to indicate whether to use sentence embeddings through SBERT, otherwise use TfIdfVectorizer
     :param bert_name: name of BERT model
     :return: pipeline object trained on the data provided through classifier specified by model_type
     """
@@ -43,7 +43,7 @@ def train_model(X_train, y_train, model_type="logreg", SBERT = False, bert_name 
     elif model_type == "nb":
         classifier = ComplementNB()
     else:
-        raise ValueError("model_type must be 'logreg' or 'svm'")
+        raise ValueError("model_type must be 'logreg' or 'svm' or 'nb'")
 
     if SBERT:
         pipeline = Pipeline([
@@ -54,9 +54,9 @@ def train_model(X_train, y_train, model_type="logreg", SBERT = False, bert_name 
         pipeline = Pipeline([
             ("tfidf", TfidfVectorizer(
                 lowercase=True,
-                stop_words="english",
-                max_features=20000,
-                ngram_range=(1, 2),
+                stop_words=None,
+                max_features=100000,
+                ngram_range=(1, 4),
                 min_df=5
             )),
             ("clf", classifier)
