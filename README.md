@@ -1,4 +1,4 @@
-# Political Bias Classifier with TdIdf Vectorization
+# Political Bias Classifier with TdIdf Vectorization and Sentence Transformer embeddings (branch 3)
 
 
 ### Abstract 
